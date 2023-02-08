@@ -1,0 +1,25 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+      - id : Customer-Services
+        uri:
+          lb://Customer-Services
+        predicates:
+        - Path=/v1/customers/**
+        
+      - id : Property-Services
+        uri:
+          lb://Property-Services
+        predicates:
+        - Path=/v1/property/**
+eureka:
+  instance:
+    hostname: localhost
+          
+
